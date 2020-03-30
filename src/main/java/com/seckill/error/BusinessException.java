@@ -1,0 +1,42 @@
+package com.seckill.error;
+
+/**
+ * @Title BusinessException
+ * @Description BusinessException
+ * @Author Zijun_Wei
+ * @Date 2020/1/29
+ */
+/**包装器业务异常类实现
+ * BusinessException和EmBusinessError都实现了CommonError中定义的方法，这样
+ * 外部不仅可以new BusinessException 也可以new EmBusinessError 都可以有对应的errCode和errMsg
+ * 并且都实现了setErrMsg的方法，这样BusinessException可以将原来EmBusinessError定义的errMsg覆盖掉
+ */
+public class BusinessException extends Exception implements CommonError {
+    private CommonError commonError;
+    /**直接接收EmBusinessError的传参用于构造业务异常*/
+    public BusinessException(CommonError commonError){
+        super();
+        this.commonError = commonError;
+    }
+    /**接收自定义errMsg的方式构造业务异常*/
+    public BusinessException(CommonError commonError, String errMsg){
+        super();
+        this.commonError = commonError;
+        this.commonError.setErrMsg(errMsg);
+    }
+    @Override
+    public int getErrCode() {
+        return this.commonError.getErrCode();
+    }
+
+    @Override
+    public String getErrMsg() {
+        return this.commonError.getErrMsg();
+    }
+
+    @Override
+    public CommonError setErrMsg(String errMsg) {
+        this.commonError.setErrMsg(errMsg);
+        return this;
+    }
+}
