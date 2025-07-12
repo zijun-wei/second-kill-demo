@@ -67,7 +67,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.7</version>
+      <version>3.18.0</version>
     </dependency>
     <!-- 导入hibernate的validator用于参数校验-->
     <dependency>
